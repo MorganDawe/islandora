@@ -495,9 +495,9 @@ function islandora_ingest_form_stepify(array $form, array &$form_state, array $s
  */
 function islandora_ingest_form_add_step_context(array &$form, array $form_state) {
   $items = array();
-  $get_label = function(AbstractObject $object, AbstractObject $fedora_cmodel) {
-    if (isset($object['COLLECTION_POLICY'])) {
-      $policy = new CollectionPolicy($object['COLLECTION_POLICY']->content);
+  $get_label = function(AbstractObject $collection, AbstractObject $fedora_cmodel) {
+    if (isset($collection['COLLECTION_POLICY'])) {
+      $policy = new CollectionPolicy($collection['COLLECTION_POLICY']->content);
       $policy_content_models = $policy->getContentModels();
     }
     return isset($policy_content_models[$fedora_cmodel->id]) ?
