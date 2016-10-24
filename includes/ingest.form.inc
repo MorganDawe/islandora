@@ -495,14 +495,14 @@ function islandora_ingest_form_stepify(array $form, array &$form_state, array $s
  */
 function islandora_ingest_form_add_step_context(array &$form, array $form_state) {
   $items = array();
-  $get_label = function(AbstractObject $object) {
+  $get_label = function(AbstractObject $object, AbstractObject $fedora_cmodel) {
     if (isset($object['COLLECTION_POLICY'])) {
       $policy = new CollectionPolicy($object['COLLECTION_POLICY']->content);
       $policy_content_models = $policy->getContentModels();
     }
-    return isset($policy_content_models[$object->id]) ?
-      $policy_content_models[$object->id]['name'] :
-      $object->label;
+    return isset($policy_content_models[$fedora_cmodel->id]) ?
+      $policy_content_models[$fedora_cmodel->id]['name'] :
+      $fedora_cmodel->label;
   };
   $shared_storage = islandora_ingest_form_get_shared_storage($form_state);
   foreach ($shared_storage['models'] as $key => $value) {
@@ -511,11 +511,11 @@ function islandora_ingest_form_add_step_context(array &$form, array $form_state)
       if (is_array($shared_storage['collection'])) {
         // Form state config allows for multiple collection objects.
         foreach ($shared_storage['collection'] as $collection) {
-          $items[$value] = $get_label($collection);
+          $items[$value] = $get_label($collection, $fedora_cmodel);
         }
       }
       else {
-        $items[$value] = $get_label($shared_storage['collection']);
+        $items[$value] = $get_label($shared_storage['collection'], $fedora_cmodel);
       }
     }
   }
