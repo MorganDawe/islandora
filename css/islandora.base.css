@@ -5,8 +5,7 @@
         Purpose of the stylesheet follows.
 */
 
-.islandora img,
-.islandora-object-thumb img {
+.islandora img {
   max-width: 100%;
   *width: 100%;
 }
