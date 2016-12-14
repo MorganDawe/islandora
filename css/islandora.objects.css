@@ -14,7 +14,7 @@ div.islandora-objects > div {
  * does not exceed that of its parent container (ex: 20%).
  *
  * img styling (max-height) - Avoid making assumptions on max height here, allowing auto
- * height based on max-width of 100%. Consider overrideing this file in your theme,
+ * height based on max-width of 100%. Consider overriding this file in your theme,
  * or adding your own CSS to address a maximum thumbnail height.
  */
 .islandora-object img {
